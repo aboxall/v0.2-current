@@ -9,6 +9,9 @@ define('LOG_PATH', realpath('../system/logs'));
 // include the Load class for all future object instantiation                                    
 require_once LIB_PATH . '/Load.php';
 
+// include the logger class
+require_once LIB_PATH . '/Logger.php';
+
 // include the base Controller class
 require_once LIB_PATH . '/Controller.php';
 
