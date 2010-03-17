@@ -91,13 +91,13 @@ class Load
  
             require $path;
         }
- 
+
+        $class_name .= 'Model';
+
         if (!class_exists($class_name))
         {
             throw new LoadException('LOAD_MODEL_CLASS_NOT_FOUND');
         }
- 
-        $class_name .= 'Model';
  
         return new $class_name;
     }

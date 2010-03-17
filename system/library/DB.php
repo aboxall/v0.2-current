@@ -6,8 +6,11 @@ class DB extends PDO
 
     public function __construct()
     {
-		// Require database configuration
-		require_once 'database.conf';
+        $config = Load::library('Config');
+
+        $connections = $config->get('connections');
+
+        print_r($connections);
 
         try
         {

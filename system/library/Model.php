@@ -6,7 +6,7 @@ class Model
 
     public function __construct()
     {
-        $this->db = new DB();
+        $this->db = Load::library('DB');
     }
 }
 

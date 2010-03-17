@@ -6,6 +6,15 @@ class IndexController extends Controller
     public function __construct()
     {
 	   parent::__construct();
+
+        try
+        {
+            $model = Load::model('Index');
+        }
+        catch (LoadException $e)
+        {
+            die($e->getMessage());
+        }
     }
 
     public function index()
