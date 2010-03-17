@@ -7,12 +7,12 @@ class Session
 		session_start();
 	}
 	
-	public function setVar($name, $value)
+	public function set($name, $value)
 	{
 		$_SESSION[$name] = $value;
 	}
 
-	public function getVar($name)
+	public function get($name)
 	{
 		return isset($_SESSION[$name]) ? $_SESSION[$name] : false;
 	}

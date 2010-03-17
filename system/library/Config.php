@@ -54,8 +54,6 @@ class Config
             // override the debug mode
             $this->set('server_debug_mode', $session->get('debug_mode_override'));
         }
-
-        print_r($this->properties);
     }
 
     public function parse($ini, $file = false, $return = false)
@@ -82,8 +80,8 @@ class Config
             }
         }
 
-        // if $file is true we need to parse $ini as 
-        $parsed = $file ? parse_ini_file($ini, true) : parse_ini_string($ini, true);
+        // if $file is true we need to parse $ini param as a file 
+        $parsed = $file ? parse_ini_file($path, true) : parse_ini_string($ini, true);
 
         // if the return param is set we want to return the parsed
         // INI file instead of adding to the properties array
