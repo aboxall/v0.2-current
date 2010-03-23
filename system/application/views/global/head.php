@@ -12,7 +12,7 @@
 <meta name="author" content="A&amp;B Designs" />
 <style type="text/css" media="all">
 /*<![CDATA[*/
-@import "css/master.css";
+@import url("../../../../www/media/css/master.css");
 /*]]>*/
 </style>
 </head>

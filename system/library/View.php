@@ -29,7 +29,6 @@ class View
                 {
                     $$key = $value;
                 }
-
                 include_once($this->path);
             }
         }

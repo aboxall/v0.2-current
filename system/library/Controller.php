@@ -11,7 +11,11 @@ abstract class Controller
 
     final public function _draw()
     {
-        // ready for new View library functionality
+        $this->view->add('global/head');
+        $this->view->add('global/header');
+        $this->view->add('global/left');
+        $this->view->add('global/right');
+        $this->view->add('global/footer');
     }
 
     abstract public function index();
