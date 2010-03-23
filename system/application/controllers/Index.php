@@ -11,7 +11,6 @@ class IndexController extends Controller
 
     public function index()
     {
-        $this->view->head = 'Lol';
     }
 
     public function custom()
