@@ -4,7 +4,7 @@
             <div class="title1">Popular Tours</div>
 		<ul class="contries">
                     <?php echo $sd;?>
-                    <li><a href="#">Argentina</a></li>
+                    <li><a href="index/custom">Argentina</a></li>
                     <li><a href="#">Australia</a></li>
                     <li><a href="#">Brasilia</a></li>
                     <li><a href="#">China</a></li>
