@@ -2,9 +2,8 @@
 
 class Config
 {
-    private $properties = array();
     private static $instance;
-
+    private $properties = array();
     public $path;
 
     public static function getInstance()
@@ -26,34 +25,8 @@ class Config
         $this->parse('config.ini', true);
         $this->parse('database.ini', true);
 
-        // check whether we're using environment levels
-        if ($this->get('server.use_environment'))
-        {
-            // set the dev/prod environment
-            $this->setEnvironment();
-        }
-
-        // load the session library to detect debug_mode override
-        $session = Load::library('Session');
-
-        // check if the debug GET param has been passed
-        if (isset($_GET['debug']))
-        {
-            // parse the integer value of debug GET param
-            $debug_mode = (int) $_GET['debug'];
-
-            // override the debug mode
-            $this->set('server.debug_mode', $debug_mode);
-
-            // store the value for the rest of the session
-            $session->set('debug_mode_override', $debug_mode);
-        }
-        // check if the debug mode has been set for this session
-        elseif ($session->get('debug_mode_override'))
-        {
-            // override the debug mode
-            $this->set('server_debug_mode', $session->get('debug_mode_override'));
-        }
+        // set the prod/dev environment
+        $this->setEnvironment();
     }
 
     public function parse($ini, $file = false, $return = false)
@@ -149,36 +122,40 @@ class Config
         return false;
     }
 
-    private function setEnvironment($debug_mode = false, $overwrite = false)
+    private function setEnvironment($overwrite = false)
     {
+        $uri = Load::library('URI');
+
         if (!empty($overwrite))
         {
-            // if a custom environment has been passed or we're overwriting
-            // the default handling of dev/prod, set the environment to that 
-            $env  = $overwrite;
-        }
-        elseif ($_SERVER['SERVER_NAME'] == $this->get('server.prod_domain'))
-        {
-            // we're on the production server
-            $env = 'prod';
+            // we're overwriting the default environment 
+            $env = $overwrite;
         }
         else
         {
-            // default to a dev environment
-            $env = 'dev';
-            
-            // debug mode should always be enabled on dev
-            $debug_mode = true;
+            $prod_exps = $this->get('server.prod_exps');
+
+            foreach ($prod_exps as $exp)
+            {
+                if (preg_match($exp, $_SERVER['SCRIPT_URI']))
+                {
+                    // we're on the production site
+                    $env = 'prod';
+
+                    // break as we have a valid match
+                    break;
+                }
+            }
         }
 
-        // set the server environment property
+        if (empty($env))
+        {
+            // we're on the development site
+            $env = 'dev';
+        }
+
+        // set the server enviroment
         $this->set('server.environment', $env);
-
-        // set the debug mode property
-        $this->set('server.debug_mode', $debug_mode);
-
-        // write debug log
-        Logger::write('Environment set: ' . $env);
     }
 
     public function getEnvironment()

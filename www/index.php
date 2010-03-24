@@ -9,7 +9,7 @@ define('LOG_PATH', realpath('../system/logs'));
 // include the Load class for all future object instantiation                                    
 require_once LIB_PATH . '/Load.php';
 
-// include the logger class
+// include the static logger class
 require_once LIB_PATH . '/Logger.php';
 
 // include the base Controller class
@@ -18,7 +18,10 @@ require_once LIB_PATH . '/Controller.php';
 // include the base Model class
 require_once LIB_PATH . '/Model.php';
 
- // create the Config instance and set to singleton
+// include the global exception
+require_once APP_PATH . '/exceptions/global.php';
+
+// create the Config instance and set to singleton
 $config = Load::library('Config');
 
 // instantiate the router class
