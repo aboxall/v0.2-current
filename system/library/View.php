@@ -18,7 +18,7 @@ class View
     {
         try
         {
-            $this->path = $this->config->get('default.view_dir') . $name . $this->config->get('default.view_ext');
+            $this->path = $this->config->get('view.view_dir') . $name . $this->config->get('view.view_ext');
             if(!file_exists($this->path) && (!is_file($this->path)))
             {
                 throw new Exception('The ' . $this->path . ' doesn\'t exists');

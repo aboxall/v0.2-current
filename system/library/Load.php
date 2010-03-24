@@ -114,9 +114,9 @@ class Load
         require $path;
     }
 
-    public static function template($file)
+    public static function view($file, $ext = null)
     {
-        $path = APP_PATH . '/views/' . $file;
+        $path = APP_PATH . '/views/' . $file . $ext;
 
         if (!file_exists($path))
         {

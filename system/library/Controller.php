@@ -15,10 +15,10 @@ abstract class Controller
     {
         $search = preg_replace("/controller/",
             $this->config->get('default.controller'),
-            $this->config->get('templates.tpl'));
+            $this->config->get('view.tpl'));
         foreach($search as $k => $v)
         {
-            load::template($v . '.php');
+            Load::view($v . $this->config->get('view.view_ext'));
         }
     }
 
