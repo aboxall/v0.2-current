@@ -25,8 +25,22 @@ class Config
         $this->parse('config.ini', true);
         $this->parse('database.ini', true);
 
-        // set the prod/dev environment
-        $this->setEnvironment();
+        // load the session library
+        $this->session = Load::library('Session');
+
+        // attempt to get an einvornment stored for the session
+        $sess_env = $this->session->get('sess_env');
+
+        if (!empty($sess_env))
+        {
+            // set to session environment
+            $this->setEnvironment($sess_env);
+        }
+        else
+        {
+            // determine envinornment
+            $this->setEnvironment();
+        }
     }
 
     public function parse($ini, $file = false, $return = false)
@@ -156,6 +170,9 @@ class Config
 
         // set the server enviroment
         $this->set('server.environment', $env);
+
+        // store environment in a session
+        $this->session->set('sess_env', $env);
     }
 
     public function getEnvironment()
