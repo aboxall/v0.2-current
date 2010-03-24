@@ -11,7 +11,13 @@ abstract class Controller
 
     final public function _draw()
     {
-        // ready for new View library functionality
+        $search = preg_replace("/controller/",
+            $this->config->get('default.controller'),
+            $this->config->get('templates.tpl'));
+        foreach($search as $k => $v)
+        {
+            load::template($v . '.php');
+        }
     }
 
     abstract public function index();
