@@ -13,29 +13,7 @@ class Router
         $this->Uri    = Load::library('URI');
         $this->Config = Load::library('Config');
 
-        $this->initRouting();
-    }
-
-    protected function initRouting()
-    {
-        try
-        {
-            $this->parseRoute();
-        }
-        catch (Exception $e)
-        {
-            switch ($e->getMessage())
-            {
-                case 'ROUTER_INVALID_CONTROLLER':
-                case 'ROUTER_INVALID_METHOD':
-                    //FIXME error handler will be called
-                    echo "404 will be delivered..<br />";
-                    die($e->getMessage());
-                    break;
-                default:
-                    throw new Exception($e->getMessage());
-            }
-        }
+        $this->parseRoute();
     }
 
     protected function parseRoute()
@@ -79,13 +57,13 @@ class Router
         }
         catch (LoadException $e)
         {
-            throw new Exception('ROUTER_INVALID_CONTROLLER');
+            throw new Exception($e->getMessage());
         }
 
         // ensure method exists
         if (!method_exists($this->Controller, $method))
         {
-            throw new Exception('ROUTER_INVALID_METHOD');
+            throw new Exception('404 error..');
         }
 
         // call the method
