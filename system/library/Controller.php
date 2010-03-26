@@ -12,7 +12,7 @@ abstract class Controller
 
     final public function _draw()
     {
-        $this->view->replace();
+        $this->view->frontRender();
     }
 
     abstract public function index();

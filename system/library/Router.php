@@ -2,11 +2,7 @@
 
 class Router
 {
-    protected $Uri;
-    protected $Config;
-    protected $Controller;
-    protected $Method;
-    protected $Draw;
+    protected $Uri, $Config, $Controller, $Method, $Draw;
 
     public function __construct()
     {

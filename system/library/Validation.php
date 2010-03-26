@@ -1,9 +1,7 @@
 <?php
 class Validation
 {
-	public $post = array();
-	public $message = "";
-	public $errors = array();
+	public $post = array(), $message = "", $errors = array();
 
 	
 	/**
