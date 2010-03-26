@@ -1,41 +1,34 @@
 <?php
 class View
 {
-    public $vars = array();
-    protected $path;
-    protected $config;
+    public $vars  = array(), $views = array();
 
     public function __construct()
     {
         $this->config = Load::library('Config');
     }
 
-    public function __set($index, $value)
+    public function assign($name, $value)
     {
-        $this->vars[$index] = $value;
+        $this->vars[$name] = $value;
     }
-    public function add($name)
-    {
-        try
-        {
-            $this->path = $this->config->get('view.view_dir') . $name . $this->config->get('view.view_ext');
-            if(!file_exists($this->path) && (!is_file($this->path)))
-            {
-                throw new Exception('The ' . $this->path . ' doesn\'t exists');
-            }
-            else
-            {
-                foreach ($this->vars as $key => $value)
-                {
-                    $$key = $value;
-                }
 
-                include_once($this->path);
-            }
-        }
-        catch(Exception $e)
+    public function add($view)
+    {
+        $this->views[] = $view;
+    }
+
+    public function replace()
+    {
+        extract($this->vars);
+          $search = preg_replace("/controller/",
+            $this->config->get('default.controller'),
+            $this->config->get('view.tpl'));
+        $this->merge = array_merge($this->views, $search);
+        unset($this->merge[0]);
+        foreach ($this->merge as $this->view)
         {
-            echo $e->getMessage() . '<br /> On Line: ' .$e->getLine() . '<br />In File: '. $e->getFile();
+            include $this->config->get('view.view_dir') . $this->view . '.php';
         }
     }
 }

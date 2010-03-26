@@ -13,13 +13,7 @@ abstract class Controller
 
     final public function _draw()
     {
-        $search = preg_replace("/controller/",
-            $this->config->get('default.controller'),
-            $this->config->get('view.tpl'));
-        foreach($search as $k => $v)
-        {
-            Load::view($v . $this->config->get('view.view_ext'));
-        }
+        $this->view->replace();
     }
 
     abstract public function index();
