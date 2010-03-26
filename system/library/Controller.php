@@ -2,8 +2,7 @@
 
 abstract class Controller
 {
-    protected $view;
-    protected $config;
+    protected $view, $config;
 
     public function __construct()
     {
