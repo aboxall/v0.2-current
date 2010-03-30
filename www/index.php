@@ -25,6 +25,6 @@ require_once APP_PATH . '/exceptions/global.php';
 $config = Load::library('Config');
 
 // instantiate the router class
-$router = Load::library('Router');
+$router = Load::library('Application');
 
 // EOF

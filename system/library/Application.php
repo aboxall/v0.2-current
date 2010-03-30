@@ -1,6 +1,6 @@
 <?php
 
-class Router
+class Application
 {
     protected $Uri, $Config, $Controller, $Method, $Draw;
 
