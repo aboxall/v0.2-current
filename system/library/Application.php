@@ -64,7 +64,6 @@ class Application
 
         // call the method
         $this->Method = call_user_func(array($this->Controller, $method));
-
         // call draw method
         $this->Draw = call_user_func(array($this->Controller, '_draw'));
     }

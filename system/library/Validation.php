@@ -70,7 +70,7 @@ class Validation
 	
 	public function notEmpty($post)
 	{
-		return empty($this->post) ? true : false;
+		return empty($this->post[$post]) ? true : false;
 
 	}
 	

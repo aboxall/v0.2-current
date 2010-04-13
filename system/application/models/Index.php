@@ -1,7 +1,15 @@
 <?php
+/* 
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-class IndexModel extends Model
-{
+/**
+ * Description of Index
+ *
+ * @author hathor
+ */
+class IndexModel extends Model {
+    //put your code here
 }
-
-// EOF
+?>

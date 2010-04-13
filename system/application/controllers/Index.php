@@ -20,7 +20,6 @@ class IndexController extends Controller
     public function index()
     {
         $this->view->assign('lol', 'Raw Data');
-        $this->view->add(array('global/head', 'global/header', 'index', 'global/footer'));
+        $this->view->add(array('global/head', 'global/header', 'global/left', 'index', 'global/right', 'global/footer'));
     }
 }
-// EOF

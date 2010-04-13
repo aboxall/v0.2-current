@@ -1,1 +1,3 @@
-<?php echo $lol;?>sd
+<div id="central">
+<?php echo $lol;?>
+</div>
